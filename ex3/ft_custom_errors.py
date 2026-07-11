@@ -1,18 +1,18 @@
-#!usr/bin/env python3
+#!/usr/bin/env python3
 
 class GardenError(Exception):
-    def __init__(self, message: str):
+    def __init__(self, message: str = "Unknown garden error"):
         super().__init__(message)
         self.message = message
 
 
 class PlantError(GardenError):
-    def __init__(self, message):
+    def __init__(self, message: str = "Unknown plant error"):
         super().__init__(message)
 
 
 class WaterError(GardenError):
-    def __init__(self, message):
+    def __init__(self, message: str = "Unknown water error"):
         super().__init__(message)
 
 
@@ -22,24 +22,24 @@ def test_custom_errors() -> None:
     print("Testing PlantError...")
     try:
         raise PlantError("The Tomato plant is wilting!")
-    except GardenError as e:
+    except PlantError as e:
         print("--- Test1 ---")
         print(f"Caught {e.__class__.__name__}: {e}\n")
 
     try:
         raise WaterError("Not enough water in the tank!")
-    except GardenError as e:
+    except WaterError as e:
         print("--- test 2 ---")
         print(f"Caught {e.__class__.__name__}: {e}\n")
 
     try:
-        raise GardenError("The tomato plant is wilting!")
+        raise PlantError("The tomato plant is wilting!")
     except GardenError as e:
         print("--- test 3 ---")
         print(f"Caught {e.__class__.__name__}: {e}\n")
 
     try:
-        raise GardenError("Not enough water in the tank!")
+        raise WaterError("Not enough water in the tank!")
     except GardenError as e:
         print("--- test 4 ---")
         print(f"Caught {e.__class__.__name__}: {e}\n")
