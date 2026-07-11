@@ -22,7 +22,7 @@ def test_watering_system() -> None:
     print("--- Test 1 ---")
     print("Testing valid plants...")
     print("Opening watering system")
-    
+
     try:
         water_plant("Tomato")
         water_plant("Lettuce")
