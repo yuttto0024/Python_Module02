@@ -1,25 +1,25 @@
-from typing import Optional
+#!/usr/bin/env python3
+
+def input_temperature(temp_str: str) -> int:
+    return int(temp_str)
 
 
-def check_temperature(temp_str: str) -> Optional[int]:
+def test_temperature() -> None:
+    print("--- Test 1 ---")
+    print("Input: '25'")
+    temp = input_temperature("25")
+    print(f"Temperature is now {temp}℃\n")
+
+    print("--- Test 2 ---")
+    print("Input: 'abc'")
     try:
-        temp_int = int(temp_str)
-    except ValueError:
-        print(f"Error: Invalid input. '{temp_str}' is not a valid integer.")
-        return None
+        temp = input_temperature("abc")
+    except ValueError as e:
+        print(f"Caught input_temperature error: {e}\n")
 
-    if 0 <= temp_int <= 40:
-        return temp_int
-    else:
-        print(f"Warning: Temperature {temp_int}"
-              "is out of the acceptable range (0-40).")
-        return None
+    print("All tests completed - program didn't crash!")
 
 
 if __name__ == "__main__":
-    test_cases = ["25", "25.5", "hot", "50", "-5"]
-
-    for val in test_cases:
-        print(f"--- Test Input: {val} ---")
-        result = check_temperature(val)
-        print(f"Return: {result}\n")
+    print("=== Garden Temperature ===\n")
+    test_temperature()
